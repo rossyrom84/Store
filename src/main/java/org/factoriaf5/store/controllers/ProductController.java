@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.view.RedirectView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @RestController
 public class ProductController {
@@ -16,17 +17,15 @@ public class ProductController {
         return greeting;
     }
 
-    private ArrayList<Product> products;
-    public ProductController() {
-        products = new ArrayList<>();
-    }
+    public List<Product> products = new ArrayList<>();
+
     @GetMapping("/products")
-    public  ArrayList<Product> allproducts() { return  products; }
+    public List<Product> allproducts() { return  products; }
 
     @PostMapping("/products")
     public RedirectView addNewProduct(Product product) {
         products.add(product);
-        return new RedirectView("/products")
+        return new RedirectView("/products");
     }
 };
 
